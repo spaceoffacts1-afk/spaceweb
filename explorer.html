@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CosmoVerse Explorer</title>
+<style>
+body{margin:0;font-family:Arial,sans-serif;background:#020617;color:#fff;overflow-x:hidden}
+header{padding:20px;position:sticky;top:0;background:#071326cc;backdrop-filter:blur(8px);display:flex;justify-content:space-between}
+a,button{color:#fff;background:#0ea5e9;border:none;padding:10px 16px;border-radius:8px;text-decoration:none;cursor:pointer}
+.hero{text-align:center;padding:60px 20px}
+.planets{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:20px;padding:20px}
+.card{background:#0f172a;padding:20px;border-radius:16px;text-align:center;transition:.3s}
+.card:hover{transform:translateY(-8px);box-shadow:0 0 18px cyan}
+.circle{width:90px;height:90px;border-radius:50%;margin:0 auto 12px;background:linear-gradient(#4cc9f0,#1d4ed8);animation:spin 12s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+#stars{position:fixed;inset:0;pointer-events:none;background-image:radial-gradient(white 1px,transparent 1px);background-size:50px 50px;opacity:.25}
+footer{text-align:center;padding:30px}
+.light{background:#eef6ff;color:#111}
+.light .card{background:#fff;color:#111}
+</style>
+</head>
+<body>
+<div id="stars"></div>
+<header><h2>🚀 CosmoVerse Explorer</h2><div><button id="theme">🌙</button> <a href="index.html">Home</a></div></header>
+<section class="hero">
+<h1>Explore the Solar System</h1>
+<p>Click planets to discover facts.</p>
+</section>
+<section class="planets" id="grid"></section>
+<footer>Made with HTML, CSS & JavaScript</footer>
+<script>
+const planets=[
+["Mercury","Closest planet to the Sun."],
+["Venus","Hottest planet."],
+["Earth","Our home world."],
+["Mars","The Red Planet."],
+["Jupiter","Largest planet."],
+["Saturn","Famous for rings."],
+["Uranus","Rotates on its side."],
+["Neptune","Strongest winds."]
+];
+const grid=document.getElementById("grid");
+planets.forEach(p=>{
+ const c=document.createElement("div");
+ c.className="card";
+ c.innerHTML=`<div class="circle"></div><h3>${p[0]}</h3><button>Learn More</button>`;
+ c.querySelector("button").onclick=()=>alert(p[1]);
+ grid.appendChild(c);
+});
+document.getElementById("theme").onclick=()=>{
+ document.body.classList.toggle("light");
+};
+setInterval(()=>{
+ const s=document.createElement("div");
+ s.textContent="✦";
+ s.style.position="fixed";
+ s.style.left=Math.random()*innerWidth+"px";
+ s.style.top="-20px";
+ s.style.pointerEvents="none";
+ document.body.appendChild(s);
+ let y=-20;
+ const id=setInterval(()=>{
+  y+=3;s.style.top=y+"px";
+  if(y>innerHeight){clearInterval(id);s.remove();}
+ },16);
+},500);
+</script>
+</body>
+</html>
