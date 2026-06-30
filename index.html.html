@@ -1,0 +1,640 @@
+    ```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CosmoVerse</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:Poppins,sans-serif;
+background:#020617;
+color:white;
+overflow-x:hidden;
+}
+
+/* Animated Background */
+
+body::before{
+content:"";
+position:fixed;
+inset:0;
+background:
+radial-gradient(circle,#ffffff 1px,transparent 1px);
+background-size:60px 60px;
+opacity:.25;
+animation:stars 80s linear infinite;
+pointer-events:none;
+}
+
+@keyframes stars{
+from{transform:translateY(0);}
+to{transform:translateY(-1500px);}
+}
+
+/* Navigation */
+
+nav{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+background:rgba(0,0,0,.35);
+backdrop-filter:blur(10px);
+z-index:100;
+}
+
+.logo{
+font-size:28px;
+font-family:Orbitron,sans-serif;
+color:#59d8ff;
+}
+
+nav ul{
+display:flex;
+gap:25px;
+list-style:none;
+}
+
+nav a{
+color:white;
+text-decoration:none;
+transition:.3s;
+}
+
+nav a:hover{
+color:#59d8ff;
+}
+
+#themeBtn{
+padding:10px 18px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+}
+
+/* Hero */
+
+.hero{
+min-height:100vh;
+display:flex;
+justify-content:space-around;
+align-items:center;
+padding:120px 8%;
+}
+
+.hero-text{
+max-width:550px;
+}
+
+.hero-text h1{
+font-size:65px;
+font-family:Orbitron,sans-serif;
+}
+
+.hero-text span{
+color:#59d8ff;
+}
+
+.hero-text p{
+margin:25px 0;
+line-height:1.8;
+color:#ddd;
+}
+
+.buttons{
+display:flex;
+gap:20px;
+}
+
+.buttons button{
+padding:15px 30px;
+border:none;
+border-radius:40px;
+cursor:pointer;
+font-size:16px;
+transition:.3s;
+}
+
+.buttons button:hover{
+transform:translateY(-5px);
+}
+
+#launch{
+background:#59d8ff;
+}
+
+#explore{
+background:#ffb703;
+}
+
+.planet{
+width:260px;
+height:260px;
+border-radius:50%;
+background:linear-gradient(#00b4ff,#003566);
+box-shadow:0 0 60px #38bdf8;
+animation:rotate 20s linear infinite;
+position:relative;
+}
+
+.rocket{
+position:absolute;
+font-size:60px;
+top:100px;
+left:95px;
+transition:2.5s;
+}
+
+@keyframes rotate{
+from{transform:rotate(0);}
+to{transform:rotate(360deg);}
+}
+
+/* Sections */
+
+section{
+padding:90px 8%;
+}
+
+h2{
+font-family:Orbitron,sans-serif;
+text-align:center;
+margin-bottom:50px;
+font-size:40px;
+}
+
+/* Cards */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+gap:25px;
+}
+
+.card{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(12px);
+padding:25px;
+border-radius:20px;
+text-align:center;
+transition:.4s;
+}
+
+.card:hover{
+transform:translateY(-10px);
+box-shadow:0 0 25px cyan;
+}
+
+.circle{
+width:110px;
+height:110px;
+margin:auto;
+border-radius:50%;
+margin-bottom:20px;
+animation:rotate 15s linear infinite;
+}
+
+.mercury{background:#888;}
+.venus{background:#c78d45;}
+.earth{background:#2a7cff;}
+.mars{background:#d44a2d;}
+.jupiter{background:#caa070;}
+.saturn{background:#d8c087;}
+.uranus{background:#7ffcff;}
+.neptune{background:#355eff;}
+
+.info{
+margin-top:20px;
+padding:10px 22px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+background:#59d8ff;
+}
+
+/* Counter */
+
+.stats{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+gap:25px;
+}
+
+.stat{
+padding:30px;
+text-align:center;
+background:rgba(255,255,255,.08);
+border-radius:18px;
+}
+
+.counter{
+font-size:45px;
+color:#59d8ff;
+}
+
+/* Gallery */
+
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+gap:20px;
+}
+
+.gallery div{
+background:#081321;
+padding:45px;
+border-radius:20px;
+transition:.4s;
+}
+
+.gallery div:hover{
+transform:scale(1.04);
+box-shadow:0 0 20px #4dd8ff;
+}
+
+/* Continue CSS in Message 2... */
+
+</style>
+</head>
+
+<body>
+
+<nav>
+
+<div class="logo">🚀 CosmoVerse</div>
+
+<ul>
+<li><a href="#">Home</a></li>
+<li><a href="#planets">Planets</a></li>
+<li><a href="#stats">Stats</a></li>
+<li><a href="#gallery">Gallery</a></li>
+</ul>
+
+<button id="themeBtn">🌙</button>
+
+</nav>
+
+<section class="hero">
+
+<div class="hero-text">
+
+<h1>Explore <span>Space</span></h1>
+
+<p>
+Discover planets, galaxies, rockets and the beauty
+of the universe with interactive animations.
+</p>
+
+<div class="buttons">
+
+<button id="launch">Launch Rocket</button>
+<button id="explore">Explore</button>
+
+</div>
+
+</div>
+
+<div class="planet">
+
+<div class="rocket" id="rocket">🚀</div>
+
+</div>
+
+</section>
+
+<section id="stats">
+
+<h2>Universe Statistics</h2>
+
+<div class="stats">
+
+<div class="stat">
+<h1 class="counter" data-target="8">0</h1>
+<p>Planets</p>
+</div>
+
+<div class="stat">
+<h1 class="counter" data-target="200">0</h1>
+<p>Moons</p>
+</div>
+
+<div class="stat">
+<h1 class="counter" data-target="5000">0</h1>
+<p>Exoplanets</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="planets">
+
+<h2>Solar System</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="circle mercury"></div>
+<h3>Mercury</h3>
+<button class="info">Info</button>
+</div>
+
+<div class="card">
+<div class="circle venus"></div>
+<h3>Venus</h3>
+<button class="info">Info</button>
+</div>
+
+<div class="card">
+<div class="circle earth"></div>
+<h3>Earth</h3>
+<button class="info">Info</button>
+</div>
+
+<div class="card">
+<div class="circle mars"></div>
+<h3>Mars</h3>
+<button class="info">Info</button>
+</div>
+
+</div>
+
+</section>
+
+<section id="gallery">
+
+<h2>Space Gallery</h2>
+
+<div class="gallery">
+
+<div>🌌 Galaxy</div>
+<div>🌠 Nebula</div>
+<div>🌙 Moon</div>
+<div>🛰️ Satellite</div>
+
+</div>
+
+</section>
+
+<!-- Message 2 will continue from here -->
+```
+```html
+<footer style="text-align:center;padding:40px;background:#081321;">
+<h2>🚀 CosmoVerse</h2>
+<p>Built using HTML, CSS & JavaScript</p>
+</footer>
+
+<script>
+
+// ======================
+// Dark / Light Mode
+// ======================
+
+const themeBtn=document.getElementById("themeBtn");
+
+themeBtn.onclick=()=>{
+
+document.body.classList.toggle("light");
+
+if(document.body.classList.contains("light")){
+
+document.body.style.background="#eef6ff";
+document.body.style.color="#111";
+themeBtn.innerHTML="☀️";
+
+}else{
+
+document.body.style.background="#020617";
+document.body.style.color="white";
+themeBtn.innerHTML="🌙";
+
+}
+
+};
+
+// ======================
+// Rocket Launch
+// ======================
+
+const rocket=document.getElementById("rocket");
+
+document.getElementById("launch").onclick=()=>{
+
+rocket.style.transform="translateY(-500px) rotate(-30deg)";
+
+setTimeout(()=>{
+
+rocket.style.transform="translateY(0)";
+
+},2500);
+
+};
+
+// ======================
+// Explore Button
+// ======================
+
+document.getElementById("explore").onclick=()=>{
+
+document.getElementById("planets").scrollIntoView({
+
+behavior:"smooth"
+
+});
+
+};
+
+// ======================
+// Animated Counters
+// ======================
+
+document.querySelectorAll(".counter").forEach(counter=>{
+
+const target=+counter.dataset.target;
+
+let count=0;
+
+const update=()=>{
+
+count+=Math.ceil(target/80);
+
+if(count<target){
+
+counter.innerHTML=count;
+requestAnimationFrame(update);
+
+}else{
+
+counter.innerHTML=target;
+
+}
+
+};
+
+update();
+
+});
+
+// ======================
+// Planet Info
+// ======================
+
+const facts=[
+
+"Mercury is the closest planet to the Sun.",
+
+"Venus is hotter than Mercury.",
+
+"Earth is the only known planet with life.",
+
+"Mars is called the Red Planet."
+
+];
+
+document.querySelectorAll(".info").forEach((btn,index)=>{
+
+btn.onclick=()=>{
+
+alert(facts[index]);
+
+};
+
+});
+
+// ======================
+// Mouse Glow
+// ======================
+
+const glow=document.createElement("div");
+
+glow.style.position="fixed";
+glow.style.width="20px";
+glow.style.height="20px";
+glow.style.borderRadius="50%";
+glow.style.background="rgba(80,220,255,.5)";
+glow.style.pointerEvents="none";
+glow.style.filter="blur(10px)";
+glow.style.zIndex="9999";
+
+document.body.appendChild(glow);
+
+document.addEventListener("mousemove",e=>{
+
+glow.style.left=e.clientX-10+"px";
+glow.style.top=e.clientY-10+"px";
+
+});
+
+// ======================
+// Floating Stars
+// ======================
+
+setInterval(()=>{
+
+const star=document.createElement("div");
+
+star.innerHTML="✦";
+
+star.style.position="fixed";
+star.style.left=Math.random()*window.innerWidth+"px";
+star.style.top="-20px";
+star.style.color="white";
+star.style.opacity=Math.random();
+star.style.pointerEvents="none";
+
+document.body.appendChild(star);
+
+let y=-20;
+
+const fall=setInterval(()=>{
+
+y+=2;
+
+star.style.top=y+"px";
+
+if(y>window.innerHeight){
+
+clearInterval(fall);
+
+star.remove();
+
+}
+
+},20);
+
+},400);
+
+// ======================
+// Card Hover Glow
+// ======================
+
+document.querySelectorAll(".card").forEach(card=>{
+
+card.addEventListener("mouseenter",()=>{
+
+card.style.boxShadow="0 0 35px cyan";
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.boxShadow="";
+
+});
+
+});
+
+// ======================
+// Keyboard Shortcuts
+// ======================
+
+document.addEventListener("keydown",e=>{
+
+if(e.key==="l"){
+
+themeBtn.click();
+
+}
+
+if(e.key==="r"){
+
+document.getElementById("launch").click();
+
+}
+
+});
+
+// ======================
+// Welcome Message
+// ======================
+
+setTimeout(()=>{
+
+alert("🚀 Welcome to CosmoVerse!");
+
+},700);
+
+</script>
+
+</body>
+</html>
+```
